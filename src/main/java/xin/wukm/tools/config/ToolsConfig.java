@@ -12,6 +12,7 @@ package xin.wukm.tools.config;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.config.*;
+import com.jfinal.ext.handler.FakeStaticHandler;
 import com.jfinal.render.VelocityRender;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
@@ -95,7 +96,7 @@ public class ToolsConfig extends JFinalConfig {
     }
 
     @Override
-    public void configHandler(Handlers me) {
-
+    public void configHandler(Handlers handlers) {
+        handlers.add(new FakeStaticHandler(".action"));
     }
 }
