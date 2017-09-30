@@ -133,6 +133,6 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>tools</finalName>
+    <finalName>ROOT</finalName>
   </build>
 </project>
