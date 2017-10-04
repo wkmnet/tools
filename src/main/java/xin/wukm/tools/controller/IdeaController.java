@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.jfinal.aop.Clear;
 import org.apache.commons.lang.StringUtils;
+import xin.wukm.tools.model.License;
 import xin.wukm.tools.util.HttpUtil;
 
 import java.util.Enumeration;
@@ -56,16 +57,24 @@ public class IdeaController extends ViewController {
             request.append(name.concat("=").concat(getPara(name)).concat("&"));
             req.put(name,getPara(name));
         }
+        License license = new License();
+        license.set("action",action);
+        license.set("user_agent",getUserAgent());
+        license.set("user_address",getAddress());
+        license.set("user_name",req.getString("userName"));
+        license.set("content",req.toJSONString());
         request.deleteCharAt(request.length() - 1);
         String body = HttpUtil.get(request.toString(),"user-center.demo.vmovier.cc");
         if(StringUtils.isBlank(body)) {
             Map<String, Object> m = Maps.newHashMap();
             m.put("success", false);
+            license.set("license",JSONObject.toJSONString(m));
             renderJson(m);
         } else {
+            license.set("license",body);
             renderText(body);
         }
-
+        license.save();
     }
 
     public void releaseTicket(){

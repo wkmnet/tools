@@ -13,6 +13,7 @@ package xin.wukm.tools.routes;
 import com.jfinal.config.Routes;
 import xin.wukm.tools.controller.HomeController;
 import xin.wukm.tools.controller.IdeaController;
+import xin.wukm.tools.controller.KeyController;
 
 /**
  * Create with IntelliJ IDEA
@@ -30,5 +31,6 @@ public class AdminRoute extends Routes {
     public void config() {
         add("/", HomeController.class);
         add("/rpc",IdeaController.class);
+        add("/api/key",KeyController.class);
     }
 }

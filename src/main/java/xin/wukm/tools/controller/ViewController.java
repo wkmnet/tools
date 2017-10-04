@@ -12,6 +12,7 @@ package xin.wukm.tools.controller;
 
 import com.google.common.collect.Maps;
 import com.jfinal.core.Controller;
+import org.apache.log4j.Logger;
 
 import java.util.Map;
 
@@ -28,10 +29,22 @@ import java.util.Map;
  */
 public abstract class ViewController extends Controller {
 
+    protected Logger logger = Logger.getLogger(this.getClass());
+
     public void index(){
         Map<String,Object> ok = Maps.newHashMap();
         ok.put("success",true);
         ok.put("time",System.currentTimeMillis());
         renderJson(ok);
+    }
+
+    protected String getAddress(){
+        String address = getHeader("x-client-ip");
+        return address;
+    }
+
+    protected String getUserAgent(){
+        String address = getHeader("user-agent");
+        return address;
     }
 }
