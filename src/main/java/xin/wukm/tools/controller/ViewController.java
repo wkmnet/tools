@@ -12,6 +12,7 @@ package xin.wukm.tools.controller;
 
 import com.google.common.collect.Maps;
 import com.jfinal.core.Controller;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.Map;
@@ -39,7 +40,10 @@ public abstract class ViewController extends Controller {
     }
 
     protected String getAddress(){
-        String address = getHeader("x-client-ip");
+        String address = getHeader("x-forwarded-for");
+        if(StringUtils.isBlank(address)){
+            address = getRequest().getRemoteAddr();
+        }
         return address;
     }
 
