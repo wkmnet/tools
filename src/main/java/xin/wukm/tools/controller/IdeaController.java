@@ -47,7 +47,7 @@ public class IdeaController extends ViewController {
             header.put(key,getRequest().getHeader(key));
         }
 
-        StringBuilder request = new StringBuilder("http://119.80.184.210/rpc/");
+        StringBuilder request = new StringBuilder("http://124.65.149.134:8980/rpc/");
         request.append(action);
         request.append("?");
         Enumeration<String> names = getParaNames();
