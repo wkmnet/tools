@@ -24,6 +24,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
 import xin.wukm.tools.interceptor.LogInterceptor;
+import xin.wukm.tools.plugin.IdeaLicenseServer;
 import xin.wukm.tools.routes.AdminRoute;
 import xin.wukm.tools.tables.Tables;
 import xin.wukm.tools.util.*;
@@ -96,6 +97,7 @@ public class ToolsConfig extends JFinalConfig {
 
     @Override
     public void configPlugin(Plugins me) {
+        me.add(new IdeaLicenseServer());
         initDatabase(me);
     }
 
