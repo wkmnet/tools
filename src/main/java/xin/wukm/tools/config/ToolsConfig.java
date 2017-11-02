@@ -112,7 +112,7 @@ public class ToolsConfig extends JFinalConfig {
     }
 
     private void initDatabase(Plugins me){
-        String host = "172.30.239.148";
+        String host = "172.30.249.79";
         String port = "3306";
         String database = "tools";
         String userName = "tools";
