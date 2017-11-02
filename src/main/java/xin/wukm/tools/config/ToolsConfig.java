@@ -97,7 +97,7 @@ public class ToolsConfig extends JFinalConfig {
 
     @Override
     public void configPlugin(Plugins me) {
-        me.add(new IdeaLicenseServer());
+        //me.add(new IdeaLicenseServer()); 取消
         initDatabase(me);
     }
 
