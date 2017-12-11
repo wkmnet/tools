@@ -121,8 +121,10 @@ public class IdeaLicenseServer implements IPlugin {
             logger.info("execute : " + command);
             logger.info("result : " + processResult.toString());
             logger.info("exit : " + process.exitValue());
-            if(!StringUtils.isBlank(line.trim())){
+            if(!StringUtils.isBlank(line)){
                 return line.trim();
+            } else {
+                logger.info("line:" + line);
             }
         } catch (InterruptedException e) {
             logger.error("InterruptedException : ", e);
