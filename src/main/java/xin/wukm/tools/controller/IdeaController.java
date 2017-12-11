@@ -33,6 +33,8 @@ import java.util.Map;
  */
 public class IdeaController extends ViewController {
 
+    private String host = "http://127.0.0.1:41017";
+
     public void obtainTicket(){
         process("obtainTicket.action");
     }
@@ -47,7 +49,7 @@ public class IdeaController extends ViewController {
             header.put(key,getRequest().getHeader(key));
         }
 
-        StringBuilder request = new StringBuilder("http://124.65.149.134:8980/rpc/");
+        StringBuilder request = new StringBuilder(host.concat("/rpc/"));
         request.append(action);
         request.append("?");
         Enumeration<String> names = getParaNames();

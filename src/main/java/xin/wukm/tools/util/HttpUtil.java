@@ -13,9 +13,9 @@ package xin.wukm.tools.util;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * Create with IntelliJ IDEA
@@ -30,22 +30,25 @@ import java.util.Map;
  */
 public class HttpUtil {
 
+    private static Logger logger = Logger.getLogger(HttpUtil.class);
+
     private HttpUtil(){}
 
 
     public static String get(String url, String host){
+        logger.info("host:" + host);
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url).addHeader("Host",host)
                 .build();
         Response response = null;
         try {
-            System.out.println("request:" + url);
+            logger.info("request:" + url);
             response = client.newCall(request).execute();
             if (!response.isSuccessful()) {
             }
             String body = response.body().string();
-            System.out.println("response:" + body);
+            logger.info("response:" + body);
             return body;
         } catch (IOException e) {
             System.out.println("IOException:" + e.getMessage());
