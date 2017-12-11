@@ -97,7 +97,7 @@ public class ToolsConfig extends JFinalConfig {
 
     @Override
     public void configPlugin(Plugins me) {
-        //me.add(new IdeaLicenseServer()); 取消
+        me.add(new IdeaLicenseServer());
         initDatabase(me);
     }
 
@@ -112,8 +112,8 @@ public class ToolsConfig extends JFinalConfig {
     }
 
     private void initDatabase(Plugins me){
-        String host = "172.30.249.79";
-        String port = "3306";
+        String host = System.getenv("MYSQL_SERVICE_HOST");
+        String port = System.getenv("MYSQL_SERVICE_PORT");
         String database = "tools";
         String userName = "tools";
         String password = "tools";

@@ -10,6 +10,7 @@
  */
 package xin.wukm.tools.plugin;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.IPlugin;
 import org.apache.commons.lang.StringUtils;
@@ -105,6 +106,7 @@ public class IdeaLicenseServer implements IPlugin {
         BufferedReader brStat = null;
         try {
             String[] cmd = {"/bin/sh", "-c", command};
+            logger.info("cmd:" + JSONObject.toJSONString(cmd));
             process = Runtime.getRuntime().exec(cmd);
             process.waitFor();
             is = process.getInputStream();
