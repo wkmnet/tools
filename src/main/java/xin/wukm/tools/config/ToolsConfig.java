@@ -15,6 +15,8 @@ import com.jfinal.config.*;
 import com.jfinal.config.Constants;
 import com.jfinal.core.ActionReporter;
 import com.jfinal.ext.handler.FakeStaticHandler;
+import com.jfinal.kit.Prop;
+import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.VelocityRender;
@@ -117,6 +119,18 @@ public class ToolsConfig extends JFinalConfig {
         String database = "tools";
         String userName = "tools";
         String password = "tools";
+        if(StringUtils.isBlank(host)){
+            Prop p = PropKit.use("db.properties");
+            if(StringUtils.isBlank(p.get("db.host"))){
+                logger.error("无法初始化数据库...");
+                return;
+            }
+            host = p.get("db.host");
+            port = p.get("db.host.port");
+            database = p.get("db.name");
+            userName = p.get("db.user");
+            password = p.get("db.password");
+        }
         StringBuilder url = new StringBuilder("jdbc:mysql://");
         url.append(host).append(":").append(port).append("/").append(database).append("?useUnicode=true&characterEncoding=UTF-8");
         logger.info("init database:" + url.toString());
